@@ -14,7 +14,8 @@ from langchain.prompts.chat import (
 from langchain.memory import ConversationBufferMemory
 from langchain.chains import ConversationChain
 from langchain.callbacks.base import CallbackManager
-from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+
+# from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
 from langchain.callbacks.streamlit import StreamlitCallbackHandler
 
 from dotenv import load_dotenv
@@ -40,9 +41,9 @@ def load_conversation():
     llm = ChatOpenAI(
         streaming=True,
         callback_manager=CallbackManager(
-            [StreamlitCallbackHandler(), StreamingStdOutCallbackHandler()]
-        ),
-        verbose=True,
+            [StreamlitCallbackHandler()]
+        ),  # if adding StreamingStdOutCallbackHandler, output the responses in StdOut
+        verbose=False,
         temperature=0,
         max_tokens=1024,
     )
@@ -59,7 +60,8 @@ if "generated" not in st.session_state:
 if "past" not in st.session_state:
     st.session_state.past = []
 
-with st.form("おじさんに質問する"):
+
+with st.form("おじさんに質問する", clear_on_submit=True):
     user_message = st.text_area("質問を入力してください")
     submitted = st.form_submit_button("質問する")
 
