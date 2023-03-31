@@ -1,10 +1,10 @@
 [tool.poetry]
-name = "chatgpt-bot"
+name = "llm-bot"
 version = "0.1.0"
 description = ""
 authors = ["danimal141 <hideaki.ishii1204@gmail.com>"]
 readme = "README.md"
-packages = [{include = "chatgpt_bot"}]
+packages = [{include = "llm_bot"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
