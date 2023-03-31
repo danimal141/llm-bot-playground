@@ -9,7 +9,8 @@ $ python -m venv .venv # to inform poetry of the .python-version
 $ poetry install
 
 $ poetry shell
-$ OPENAI_API_KEY=xxx streamlit app.py
+# set .env
+$ streamlit run app.py
 
 $ poetry run python -m flake8 **/*.py # lint
 $ poetry run python -m black **/*.py # format
