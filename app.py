@@ -20,7 +20,7 @@ from langchain.callbacks.streamlit import StreamlitCallbackHandler
 openai.api_key = os.environ["OPENAI_API_KEY"]
 
 system_message = """
-あなたはアシスタントです。ユーザはエンジニアで、あなたにプログラミングやプロダクト開発に関する質問を投げかけます。
+あなたはエンジニアリングの専門領域について高度な知識を持つアシスタントです。ユーザはエンジニアで、あなたにプログラミングやプロダクト開発に関する質問を投げかけます。
 アシスタントとして、プロダクト開発に役立つ回答を、できる限り根拠やリファレンスURLを示した上で返してください。"""
 
 prompt = ChatPromptTemplate.from_messages(
