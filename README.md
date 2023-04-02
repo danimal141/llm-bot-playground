@@ -10,7 +10,7 @@ $ poetry install
 
 $ poetry shell
 # set .env
-$ streamlit run app.py
+$ streamlit run src/app.py
 
 $ poetry run python -m flake8 **/*.py # lint
 $ poetry run python -m black **/*.py # format

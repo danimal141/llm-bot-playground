@@ -40,12 +40,13 @@ prompt = ChatPromptTemplate.from_messages(
 
 @st.cache_resource
 def load_conversation():
+    manager = CallbackManager(
+        [StreamlitCallbackHandler()]
+    )  # if adding StreamingStdOutCallbackHandler, output the responses in StdOut
     llm = ChatOpenAI(
         streaming=True,
-        callback_manager=CallbackManager(
-            [StreamlitCallbackHandler()]
-        ),  # if adding StreamingStdOutCallbackHandler, output the responses in StdOut
-        verbose=False,
+        callback_manager=manager,
+        verbose=True,
         temperature=0,
         max_tokens=1024,
     )
@@ -73,7 +74,7 @@ with st.form("おじさんに質問する", clear_on_submit=True):
         st.session_state.past.append(user_message)
         st.session_state.generated.append(answer)
 
-        if st.session_state["generated"]:
+        if st.session_state.generated:
             for i in range(len(st.session_state.generated) - 1, -1, -1):
                 message(st.session_state.generated[i], key=str(i))
                 message(st.session_state.past[i], is_user=True, key=str(i) + "_user")
